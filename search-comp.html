@@ -1,0 +1,168 @@
+<link rel="import" href="/search/bower_components/polymer/polymer.html">
+<link rel="import" href="/search/elements/style.html">
+<link rel="import" href="/search/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/search/bower_components/paper-autocomplete/paper-autocomplete.html">
+<link rel="import" href="/search/bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="search-comp">
+  <template>
+     
+
+    <iron-ajax id="iron"
+    
+    handle-as="json"
+    method="GET"
+    on-response="respuestaPokedex"
+    debounce-duration="300">
+   </iron-ajax>
+
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1280px-International_Pok%C3%A9mon_logo.svg.png" id="poke">  
+
+    <br><br>
+    <div id="pokedex">
+        <div id="left">
+          <div id="logo"></div>
+          <div id="bg_curve1_left"></div>
+          <div id="bg_curve2_left"></div>
+          <div id="curve1_left">
+            <div id="buttonGlass">
+              <div id="reflect"> </div>
+            </div>
+            <div id="miniButtonGlass1"></div>
+            <div id="miniButtonGlass2"></div>
+            <div id="miniButtonGlass3"></div>
+          </div>
+          <div id="curve2_left">
+            <div id="junction">
+              <div id="junction1"></div>
+              <div id="junction2"></div>
+            </div>
+          </div>
+          <div id="screen">
+            <div id="topPicture">
+              <div id="buttontopPicture1"></div>
+              <div id="buttontopPicture2"></div>
+            </div>
+            <div id="picture">
+              <img id="sprite">
+            </div>
+            <div id="buttonbottomPicture"></div>
+            <div id="speakers">
+              <div class="sp"></div>
+              <div class="sp"></div>
+              <div class="sp"></div>
+              <div class="sp"></div>
+            </div>
+          </div>
+          <div id="bigbluebutton"></div>
+          <div id="barbutton1"></div>
+          <div id="barbutton2"></div>
+          <div id="cross">
+            <div id="leftcross">
+              <div id="leftT"></div>
+            </div>
+            <div id="topcross">
+              <div id="upT"></div>
+            </div>
+            <div id="rightcross">
+              <div id="rightT"></div>
+            </div>
+            <div id="midcross">
+              <div id="midCircle"></div>
+            </div>
+            <div id="botcross">
+              <div id="downT"></div>
+            </div>
+          </div>
+        </div>
+        <div id="right">
+          <div id="stats">
+            <strong>Name :</strong><p id="name" value=""></p><br/>
+            <strong>Type :</strong><p id="type" value=""></p><br/>
+            <strong>Attack :</strong><p id="attack" value=""></p><br/>
+            <center>¡Have Fun!</center>
+            
+            <br/>
+            <p value="[[description]]"></p>
+          </div>
+          <div id="blueButtons1">
+                <paper-input on-change = "cambiar" value="{{buscar}}" id="google" type="text" placeholder= "Write Your Fav Pokemon" >
+                </paper-input>  
+            </div>
+            <div id="miniButtonGlass4"></div>
+            <div id="miniButtonGlass5"></div>
+            <div id="barbutton3"></div>
+            <div id="barbutton4"></div>
+            <div id="yellowBox1"></div>
+            <div id="yellowBox2"></div>
+            <div id="bg_curve1_right"></div>
+            <div id="bg_curve2_right"></div>
+            <div id="curve1_right"></div>
+            <div id="curve2_right"></div>
+          </div>
+        </div>
+    
+ 
+ 
+  </template>
+  <script>
+
+  
+
+    Polymer({
+      is: "search-comp",
+
+
+
+      properties: {
+        buscar:{
+        type: String,
+          
+        },
+        typeP: {
+          type: String,
+          
+        },
+        nameP: {
+          type: String,
+        },
+        attackP: {
+          type: String,
+        }
+    },
+
+ 
+    cambiar (){
+      
+      this.$.iron.url = 'https://pokeapi.co/api/v2/pokemon/' + this.buscar;
+      this.$.iron.generateRequest();
+      console.log(this.buscar)
+    },
+    
+    respuestaPokedex(e){
+      this.$.name.textContent =  e.detail.response.name;
+     
+      if(e.detail.response.types.length == 2){
+        this.$.type.textContent =  e.detail.response.types[0].type.name + ", " + e.detail.response.types[1].type.name;
+      }else{
+        this.$.type.textContent =  e.detail.response.types[0].type.name;
+      }
+
+      this.$.sprite.src = e.detail.response.sprites.front_default;
+     
+      if(e.detail.response.abilities.length == 2){
+        this.$.attack.textContent = e.detail.response.abilities[0].ability.name + ", " + e.detail.response.abilities[1].ability.name;
+      } else {
+        this.$.attack.textContent = e.detail.response.abilities[0].ability.name;
+      }
+      console.log(e.detail.response.abilities[0].ability.name)
+    },
+   
+    },
+  );
+        
+     
+
+  </script>
+</dom-module>

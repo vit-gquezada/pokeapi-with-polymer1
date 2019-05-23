@@ -1,0 +1,28 @@
+{
+    "entrypoint": "index.html",
+    "shell": "src/ci-app.html",
+    "fragments": [
+      "elements/ci-tablero-comp.html"
+    ],
+    "sources": [
+      "data/**/*",
+      "images/**/*",
+      "fonts/*",
+      "src/**/*",
+      "bower.json"
+    ],
+    "extraDependencies": [
+      "manifest.json",
+      "bower_components/webcomponentsjs/webcomponents-lite.min.js",
+      "node_modules/babel-polyfill/dist/polyfill.min.js",
+      "bower_components/SpinKit/css/spinners/7-three-bounce.css",
+      "bower_components/normalize-css/normalize.css",
+      "bower_components/mtz-game-loader/games/**/*",
+      "bower_components/mtz-spin-setup/images/**/*",
+      "bower_components/ckeditor/**/*",
+      "bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.min.css",
+      "bower_components/outdated-browser/outdatedbrowser/outdatedbrowser.min.js",
+      "bower_components/outdated-browser/outdatedbrowser/lang/en.html"
+    ]
+  }
+  
