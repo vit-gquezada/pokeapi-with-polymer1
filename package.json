@@ -17,7 +17,7 @@
     "eslint-plugin-chai-expect": "^1.1.1",
     "eslint-plugin-html": "^1.7.0",
     "gulp": "^4.0",
-    "gulp-babel": "^6.1.2",
+    "gulp-babel": "^8.0.0",
     "gulp-filter": "^5.0.0",
     "gulp-if": "^2.0.1",
     "gulp-postcss": "^6.2.0",
